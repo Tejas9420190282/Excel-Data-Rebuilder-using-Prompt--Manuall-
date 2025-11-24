@@ -7,8 +7,17 @@ const { excel_Controller } = require('../controller/excel_Controller');
 
 const excel_Router = express.Router();
 
+const storage = multer.diskStorage({
+    destination : (req, file, cb) => {
+        cb(null, "uploads/")
+    },
+    filename : (req, file, cb) => {
+        cb(null, Date.now() + "-" + file.originalname)
+    }
+})
 
+const upload = multer({ storage });
 
-excel_Router.post("/file-prompt-uploads", excel_Controller)
+excel_Router.post("/file-prompt-uploads", upload.single('file'), excel_Controller);
 
 exports.excel_Router = excel_Router;
