@@ -9,5 +9,3 @@ const groqClient = new Groq({
 
 
 exports.groqClient = groqClient;
-
- 
