@@ -48,7 +48,8 @@ function Home() {
 
             console.log("Response:", response.data);
 
-            setResult(response.data.fullData);
+            setResult(response.data.fullData || response.data.topTenValues);
+
             setDownloadUrl(response.data.downloadUrl);
             setResponseData(response.data);
 
