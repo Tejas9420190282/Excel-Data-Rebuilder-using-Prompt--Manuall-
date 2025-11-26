@@ -193,7 +193,9 @@ GROQ_API_KEY=your_api_key_here
 ## 👨‍💻 Author
 
 **Tejas Shimpi**
+
 https://tejas-shimpi-portfolio.netlify.app/
+
 Full Stack Developer | MERN | Next.js | Node.js | React | SQL | AI integrated systems
 
 ---
