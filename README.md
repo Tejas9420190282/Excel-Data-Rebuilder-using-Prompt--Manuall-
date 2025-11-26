@@ -140,6 +140,7 @@ User Upload Excel File + Prompt
 
 ---
 
+```
 ## ▶️ How to Run
 
 ### Backend Setup
@@ -147,7 +148,7 @@ User Upload Excel File + Prompt
 ```bash
 cd backend
 npm install
-node main.js   # or nodemon main.js
+npm start
 ```
 
 ### Frontend Setup
