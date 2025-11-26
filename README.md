@@ -77,6 +77,7 @@ project-root/
  
 ---
 
+```
 ## ⚙️ How it Works (Flow Diagram)
 
 ```
