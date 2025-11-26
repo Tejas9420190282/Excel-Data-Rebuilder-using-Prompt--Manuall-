@@ -81,27 +81,49 @@ project-root/
 
 ```
 User Upload Excel File + Prompt
+            
             │
+            
             ▼
+    
     Frontend sends (file + prompt) → Backend API
+    
             │
+            
             ▼
+    
     Backend reads Excel + Extracts column headers
+    
             │
+            
             ▼
+   
     Backend sends (headers + prompt) → Groq AI model
+    
             │
+            
             ▼
+    
     Groq returns pure JS transformation code: var result = ...
+    
             │
+          
             ▼
+
     Backend executes transformation on real dataset
+    
             │
+            
             ▼
+    
     Generate new processed.xlsx file & store in /downloads
+    
             │
+            
             ▼
+    
     Return Response + Download URL + Preview to Frontend
+
 ```
 
 ---
