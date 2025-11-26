@@ -192,7 +192,7 @@ GROQ_API_KEY=your_api_key_here
 
 ## 👨‍💻 Author
 
-**Tejas Shimpi**
+**Tejas Shimpi**  (https://drive.google.com/file/d/1FLhNJayjLSSclwsX4uenppYlacuadRaU/view?pli=1)
 
 https://tejas-shimpi-portfolio.netlify.app/
 
