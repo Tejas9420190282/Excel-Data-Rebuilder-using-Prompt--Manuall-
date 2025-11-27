@@ -128,7 +128,7 @@ Write ONLY JavaScript code:
         xlsx.utils.book_append_sheet(newWorkbook, newSheet, "Processed");
 
         const outputFile = `processed_${Date.now()}.xlsx`;
-        const outputPath = path.join(__dirname, "..", "downloads", outputFile);
+        const outputPath = path.join("/tmp/downloads", outputFile);
 
         xlsx.writeFile(newWorkbook, outputPath);
 

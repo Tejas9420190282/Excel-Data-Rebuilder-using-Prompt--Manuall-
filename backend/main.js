@@ -16,11 +16,11 @@ app.use(express.urlencoded({extended: true}));
 
 
 // Static folder for downloaded Excel files
-app.use("/downloads", express.static("downloads"));
+app.use("/downloads", express.static("/tmp/downloads"));
 
 app.use(excel_Router)
 
-const PORT = 2311;
+const PORT = process.env.PORT || 2311;
 
 app.listen(PORT, () => {
 
