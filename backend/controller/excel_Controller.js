@@ -138,7 +138,7 @@ Write ONLY JavaScript code:
             topTenValues.push(result[i]);
         }
 
-        const baseURL =  `${req.protocol}://${req.get("host")}`;        // download lnk of excel file after deployment
+        const baseURL = process.env.BASE_URL || `${req.protocol}://${req.get("host")}`;       // download lnk of excel file after deployment
 
         // 8) Send response with download URL
         return res.json({
