@@ -138,12 +138,14 @@ Write ONLY JavaScript code:
             topTenValues.push(result[i]);
         }
 
+        const baseURL =  `${req.protocol}://${req.get("host")}`;        // download lnk of excel file after deployment
+
         // 8) Send response with download URL
         return res.json({
             
             success: true,
             message: "Excel processed successfully",
-            downloadUrl: `http://localhost:2311/downloads/${outputFile}`,
+            downloadUrl: `${baseURL}/downloads/${outputFile}`,
             rowsBefore: excelJson.length,
             rowsAfter: result.length,
             topTenValues: topTenValues,
