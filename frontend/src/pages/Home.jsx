@@ -1,6 +1,5 @@
 
 // Home.jsx
-
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -39,17 +38,12 @@ function Home() {
             const response = await axios.post(
                 "http://localhost:2311/file-prompt-uploads",
                 formData,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data"
-                    }
-                }
+                { headers: { "Content-Type": "multipart/form-data" } }
             );
 
             console.log("Response:", response.data);
 
-            setResult(response.data.fullData || response.data.topTenValues);
-
+            setResult(response.data.fullData || response.data.topTenValues || []);
             setDownloadUrl(response.data.downloadUrl);
             setResponseData(response.data);
 
@@ -68,7 +62,7 @@ function Home() {
         setResult(null);
         setDownloadUrl(null);
         setResponseData(null);
-        document.getElementById("fileInput").value = ""; // Reset file input
+        document.getElementById("fileInput").value = ""; 
     };
 
     return (
@@ -78,7 +72,6 @@ function Home() {
                 Excel Data Rebuilder
             </h1>
 
-            {/* Upload Section */}
             <div className="bg-white shadow p-6 rounded-lg w-full max-w-xl">
                 
                 <label className="font-semibold text-gray-700">
@@ -93,14 +86,12 @@ function Home() {
                     className="mt-2 w-full border rounded p-2"
                 />
 
-                {/* Show File Name */}
                 {file && (
                     <p className="text-sm text-gray-600 mt-1">
                         Selected File: <strong>{file.name}</strong>
                     </p>
                 )}
 
-                {/* Prompt Input */}
                 <label className="font-semibold text-gray-700 mt-4 block">
                     Enter Transformation Prompt
                 </label>
@@ -113,14 +104,12 @@ function Home() {
                     placeholder='Example: Filter rows where ID > 50'
                 ></textarea>
 
-                {/* Processing Status */}
                 {loading && (
-                    <p className="text-blue-600 mt-2">
+                    <p className="text-blue-600 mt-2 font-medium">
                         Processing your file… please wait
                     </p>
                 )}
 
-                {/* Process Button */}
                 <button
                     onClick={handleProcess}
                     disabled={loading}
@@ -131,12 +120,11 @@ function Home() {
             </div>
 
             {/* Result Preview */}
-            {result && (
+            {result && result.length > 0 ? (
                 <div className="mt-10 w-full max-w-3xl bg-white p-6 rounded shadow">
 
                     <h2 className="text-xl font-bold mb-4">Processed Result Preview</h2>
 
-                    {/* Row Count Summary */}
                     {responseData && (
                         <div className="mb-4 text-gray-700">
                             <p><strong>Rows Before:</strong> {responseData.rowsBefore}</p>
@@ -160,9 +148,7 @@ function Home() {
                                 {result.slice(0, 10).map((row, index) => (
                                     <tr key={index} className="border">
                                         {Object.values(row).map((value, i) => (
-                                            <td key={i} className="border p-2">
-                                                {value}
-                                            </td>
+                                            <td key={i} className="border p-2">{value}</td>
                                         ))}
                                     </tr>
                                 ))}
@@ -172,7 +158,6 @@ function Home() {
 
                     <p className="text-gray-600 mt-2">Showing first 10 rows…</p>
 
-                    {/* Download Button */}
                     {downloadUrl && (
                         <a
                             href={downloadUrl}
@@ -183,7 +168,6 @@ function Home() {
                         </a>
                     )}
 
-                    {/* Reset Button */}
                     <button
                         onClick={handleReset}
                         className="mt-4 ml-3 inline-block bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
@@ -191,6 +175,12 @@ function Home() {
                         Reset
                     </button>
                 </div>
+            ) : (
+                result && (
+                    <p className="text-red-600 mt-5 text-lg font-semibold">
+                        ❌ No Data Found For Your Query
+                    </p>
+                )
             )}
         </div>
     );

@@ -1,3 +1,4 @@
+
 // excel_Controller.js
 
 const xlsx = require("xlsx");
@@ -58,23 +59,22 @@ const excel_Controller = async (req, res) => {
         // 4) Sends colunm Headers and Prompt to AI......
 
         const headerPrompt = `
-            You are a JS data transformar.
-        
-            These are only Colunms Header of an Excel file : ${JSON.stringify(
-                colnms
-            )}
-            
-            The user want to do this changes in Excel File : ${prompt}
-            
-            
-            Write ONLY JavaScript code:
-            - Input variable name = data (array of row objects)
-            - Output MUST be EXACTLY: var result = ...
-            - You MUST use 'var' (do NOT use let or const)
-            - Do NOT include explanations
-            - Do NOT include comments
-            - Do NOT wrap code in backticks
-        `;
+You are a JavaScript data transformer.
+
+These are only Excel file column headers: ${JSON.stringify(colnms)}
+
+User wants: ${prompt}
+
+Write ONLY JavaScript code:
+- Input variable name = data (array of row objects)
+- Output MUST be EXACTLY: var result = ...
+- Always perform case-insensitive string comparison using .toLowerCase()
+- MUST handle missing values safely
+- You MUST use 'var' (do NOT use let or const)
+- Do NOT include explanations
+- Do NOT include comments
+- Do NOT wrap code in backticks
+`;
 
         // 5) Call Groq AI
         const aiRes = await groqClient.chat.completions.create({
@@ -140,6 +140,7 @@ const excel_Controller = async (req, res) => {
 
         // 8) Send response with download URL
         return res.json({
+            
             success: true,
             message: "Excel processed successfully",
             downloadUrl: `http://localhost:2311/downloads/${outputFile}`,
@@ -150,6 +151,7 @@ const excel_Controller = async (req, res) => {
         });
 
     } catch (error) {
+        
         console.log(`Error in excel_Controller : ${error.message}`.bgRed);
 
         res.status(500).json({
